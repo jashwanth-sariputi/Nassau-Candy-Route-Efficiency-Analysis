@@ -1,0 +1,13 @@
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
+.streamlit/secrets.toml
+.DS_Store
+
+# Keep project datasets out of public GitHub
+data/raw/
+data/processed/
