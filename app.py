@@ -16,7 +16,20 @@ st.set_page_config(
 )
 
 BASE_DIR = Path(__file__).resolve().parent
-DATA_PATH = BASE_DIR / "data" / "processed" / "nassau_factory_mapped.csv"
+ORIGINAL_DATA_PATH = (
+    BASE_DIR / "data" / "processed" / "nassau_factory_mapped.csv"
+)
+
+DEMO_DATA_PATH = (
+    BASE_DIR / "data" / "demo" / "nassau_demo.csv"
+)
+
+# Use original data locally; use synthetic data when deployed.
+DATA_PATH = (
+    ORIGINAL_DATA_PATH
+    if ORIGINAL_DATA_PATH.exists()
+    else DEMO_DATA_PATH
+)
 
 # =========================================================
 # 2. CUSTOM DESIGN
