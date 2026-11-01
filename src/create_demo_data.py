@@ -11,15 +11,15 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT = BASE_DIR / "data" / "demo" / "nassau_demo.csv"
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 
-factories = {
-    "Lot's O' Nuts": (32.881893, -111.768036),
-    "Wicked Choccy's": (32.076176, -81.088371),
-    "Sugar Shack": (48.11914, -96.18115),
-    "Secret Factory": (41.446333, -90.565487),
-    "The Other Factory": (35.1175, -89.971107),
-}
+factories = [
+    "Demo Factory North",
+    "Demo Factory South",
+    "Demo Factory East",
+    "Demo Factory West",
+    "Demo Factory Central",
+]
 
-factory_names = list(factories)
+factory_names = factories
 
 # Fictional locations
 locations = [
@@ -39,9 +39,10 @@ ship_modes = ["First Class", "Same Day", "Second Class", "Standard Class"]
 divisions = ["Chocolate", "Candy", "Gum", "Mints", "Snacks"]
 
 # Factory workload proportions are illustrative, not actual company figures.
-factory_probabilities = [0.56, 0.41, 0.02, 0.01, 0.003]
-factory_probabilities = np.array(factory_probabilities)
-factory_probabilities /= factory_probabilities.sum()
+# Equal distribution for fictional demo factories
+factory_probabilities = np.full(
+    len(factory_names), 1 / len(factory_names)
+)
 
 selected_factories = rng.choice(
     factory_names, N, p=factory_probabilities
